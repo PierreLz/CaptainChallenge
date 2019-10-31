@@ -1,0 +1,12 @@
+<div class="text-center">
+  <div class="items">
+    <p>Statistiques <%= @warrior.name %></p>
+    <p>XP : <%= @warrior.experience %></p>
+    <p>Win : <%= @warrior.win %></p>
+    <p>Lose : <%= @warrior.lose %></p>
+    <% if (@warrior.lose + @warrior.win).to_f > 0 %>
+      <p>% Win : <%= (@warrior.win.to_f / (@warrior.lose.to_f + @warrior.win.to_f)) * 100  %></p>
+    <% end %>
+    <%= render '/shared/warriorform', warrior: @warrior %>
+  </div>
+</div>

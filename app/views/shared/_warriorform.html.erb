@@ -1,0 +1,51 @@
+<%= form_for(warrior) do |f| %>
+  <% if warrior.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(warrior.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <% warrior.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+    </div>
+  <% end %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="field">
+          <%= f.label :nom, "Nom du combattant"  %>
+          <%= f.text_field :name, placeholder: "Entre 3 et 30 caractères"%><br>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="field">
+          <%= f.label :life, "Points de vie" %>
+          <%= f.number_field :life, placeholder: "Entre 1 et 500 points"  %><br>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="field col-md-">
+          <%= f.label :attack_point, 'Points d\'attaque' %>
+          <%= f.number_field :attack_point, placeholder: "Entre 1 et 50 points"   %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="field col-md-">
+          <%= f.label :dexterity_points, 'Points de dextérité' %>
+          <%= f.number_field :dexterity_points, placeholder: "Entre 1 et 30 points"   %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="field col-md-">
+          <%= f.label :picture, 'Image' %>
+          <%= f.text_field :picture, placeholder: "http://..."   %>
+        </div>
+      </div>
+      </br>
+      <div class="col-md-2">
+        <div class="actions">
+          <%= f.submit 'OK', class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

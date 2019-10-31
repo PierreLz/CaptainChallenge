@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'warriors#index'
+  resources :warriors
+  resources :pages
+  resources :fights
 
-  root 'pages#index'
+  delete '/warriors/' => 'warriors#destroy'
+  post '/warriors/' => 'warriors#create'
+
 end

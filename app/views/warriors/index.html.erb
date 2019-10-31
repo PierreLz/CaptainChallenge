@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="text_description">
+    <p> Bienvenue dans l'arène de combat la plus redoutée et la plus légendaire ! Des champions venus du monde entier s'y retrouvent pour mesurer leur force et leurs aptitudes au combat. Vous êtes le maître guerrier Captain tout puissant et les tribunes vous acclâment lorsque vous montez sur le trône qui surplombe l'arène. Vous décidez qui doit combattre sous vos yeux en choisissant vos guerriers. Auriez-vous le plaisir de voir combattre un nain sauvage contre un orc pâle du sud Messire ? </p>
+  </div>
+  <div class="part_1">
+    <h3> Des combattants sont déjà prêts: </h3>
+    <div id="chome" class="container-fluid">
+      <div class="row">
+        <% if @warriors.any? %>
+          <% @warriors.each do |warrior| %>
+            <div class="items col-md-2">
+              <div class="item-name text-center"><p><%= warrior.name %></p></div>
+              <div class="item-picture text-center"><%= image_tag warrior.picture %></div>
+              <div class="item-property-1 text-center"><p>Points de vie: <%= warrior.life %></p></div>
+              <div class="item-property-2 text-center"><p>Points d'attaque : <%= warrior.attack_point %></p></div>
+              <div class="item-property-3 text-center"><p>Points de dextérité : <%= warrior.dexterity_points %></p></div>
+              <div class="item-property-4 text-center"><p>Xp : <%= warrior.experience %></p></div>
+              <div class="item-links text-center">
+               <p><%= link_to 'Modifier', edit_warrior_path(id: warrior.id), class: "btn btn-primary" %></p>
+               <p><%= link_to 'X', warriors_path(id: warrior.id), class: "btn btn-danger", data: {:confirm => 'Etes-vous certain de vouloir supprimer ce combattant ?'}, method: :delete %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div id="create_box" class="items">
+        <h3> Créer un nouveau personnage: </h3>
+        <%= render '/shared/warriorform', warrior: @warrior %>
+      </div>
+    </div>
+  </div>
+  <div class="part_2">
+    <h3> Choisissez deux combattants et armez-les avant de commencer !</h3>
+    <div class="form text-center">
+      <%= render '/shared/fightform', fight: @fight, warriors: @warriors, weapons: @weapons %>
+    </div>
+    <div class="text-report">
+      <% if @report %>
+        <h4>Quel combat ! <%= @report.first %></h4>
+      <% else %>
+        <h4>Le combat n'a pas encore commencé<h4>
+      <% end %>
+    </div>
+  </div>
+  <div class="part_3">
+    <h3> Historique des 5 derniers combats </h3>
+    <% if @fights.any? %>
+     <ul>
+      <% @fights.each do |fight| %>
+        <li><%= fight.winner%> à combattu contre <%= fight.looser%> le <%= fight.created_at.strftime('%d-%m-%Y')%>! Le gagnant est <%= fight.winner%> sans contestation !
+        </li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>Il n'y a pas encore d'historique de combats</p>
+    <% end %>
+  </div>
+</div>
+

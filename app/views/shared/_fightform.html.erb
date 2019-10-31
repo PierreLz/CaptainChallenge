@@ -1,0 +1,62 @@
+<%= simple_form_for(fight) do |f| %>
+  <% if fight.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(fight.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <% fight.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+    </div>
+  <% end %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="field">
+          <%= f.input :warrior1_id, collection: warriors, label: "Combattant 1", placeholder: "Sélectionnez" %>
+          <br>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="field">
+          <%= f.input :warrior2_id, collection: warriors, label: "Combattant 2"%>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="field">
+          <%= f.input :weapon1_id, collection: weapons, label: "Arme", required: true %>
+          <br>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="field">
+          <%= f.input :weapon2_id, collection: weapons, label: "Arme", required: true  %>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div>
+        <h4>Détails des armes</h4>
+        <% weapons.each do |weapon| %>
+        <p><%= weapon.name %>, Bonus d'attaque: <%= weapon.attack_bonus %>, Bonus de vie: <%= weapon.life_bonus %></p>
+        <% end %>
+      </div>
+    </div>
+    </br>
+    <div class="row">
+      <div class="col-md-6">
+        <div id="btn-new" class="actions">
+          <%= link_to 'Nouveau combat', root_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class=col-md-5>
+        <div class="actions">
+          <%= f.submit 'Lancer le combat', class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  </br>
+  </div>
+<% end %>

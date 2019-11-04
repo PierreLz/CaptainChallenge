@@ -54,7 +54,7 @@ class WarriorsController < ApplicationController
   end
 
   def set_warrior
-    @warrior = Warrior.find(params[:id])
+    warrior = Warrior.find(params[:id])
   end
 
   def success_d_msg

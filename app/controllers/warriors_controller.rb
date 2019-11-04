@@ -6,7 +6,7 @@ class WarriorsController < ApplicationController
     @warriors = Warrior.all
     @fight = Fight.new
     @report = params[:report]
-    @fights = Fight.first(5)
+    @fights = Fight.last(5)
     @weapons = Weapon.all
   end
 
